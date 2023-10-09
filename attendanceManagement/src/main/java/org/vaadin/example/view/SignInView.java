@@ -9,6 +9,7 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+import org.vaadin.example.service.店舗認証Service;
 
 //このクラスは後でloginに名前変更する
 @Route("login")
@@ -43,6 +44,15 @@ public class SignInView extends VerticalLayout{
         setJustifyContentMode(JustifyContentMode.CENTER);
 
         add(new H1("トータルサポート　勤怠管理システム"), loginForm);
+
+        loginForm.addLoginListener(loginEvent -> {
+            int placeId = Integer.parseInt(loginEvent.getUsername());
+            String placePassword = loginEvent.getPassword();
+
+            店舗認証Service 店舗認証service = new 店舗認証Service();
+            var result = 店舗認証service.authenticate_test(placeId, placePassword);
+            System.out.println(result.placeName());
+        });
 
     }
 
