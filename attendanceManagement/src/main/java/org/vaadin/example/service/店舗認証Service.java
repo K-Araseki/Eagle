@@ -1,12 +1,14 @@
 package org.vaadin.example.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.vaadin.example.data.PlaceId;
 import org.vaadin.example.data.PlaceName;
 import org.vaadin.example.data.認証された店舗;
 
+@Service
 public class 店舗認証Service {
     // プロパティに記述
     @Value("")
