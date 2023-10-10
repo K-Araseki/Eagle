@@ -11,28 +11,32 @@ import org.vaadin.example.data.認証された店舗;
 @Service
 public class 店舗認証Service {
     // プロパティに記述
-    @Value("")
+    @Value("${eagle.api.uri.authenticatePlace}")
     private String uri;
 
-    public 認証された店舗 authenticate(int placeId, String placePassword){
+    public 認証された店舗 authenticate(Long placeId, String placePassword){
 
         // apiが出来たら使う
-//        RestTemplate restTemplate = new RestTemplate();
-//        var builder = UriComponentsBuilder
-//                .fromUriString(uri)
-//                .queryParam("placeId", placeId)
-//                .queryParam("placePassword", placePassword);
-//        var 認証された店舗 = restTemplate.postForObject(uri,builder.build().getQueryParams(), 認証された店舗.class);
-//        if (認証された店舗 == null){
-//            return new 認証された店舗(new PlaceId(-1L),new PlaceName("-1"));
-//        }
-
-        // test用
-        if (placePassword != "1pass"){
+        RestTemplate restTemplate = new RestTemplate();
+        RequestBody requestBody = new RequestBody(placeId, placePassword);
+        var 認証された店舗 = restTemplate.postForObject(uri,requestBody, 認証された店舗.class);
+        if (認証された店舗 == null){
             return new 認証された店舗(new PlaceId(-1L),new PlaceName("-1"));
         }
-        return new 認証された店舗(new PlaceId(1L), new PlaceName("千歳店"));
+        return 認証された店舗;
 
+        // test用
+//        if (placePassword != "1pass"){
+//            return new 認証された店舗(new PlaceId(-1L),new PlaceName("-1"));
+//        }
+//        return new 認証された店舗(new PlaceId(1L), new PlaceName("千歳店"));
+
+
+    }
+    record RequestBody(
+            Long placeId,
+            String placePassword
+    ){
     }
 
 }
