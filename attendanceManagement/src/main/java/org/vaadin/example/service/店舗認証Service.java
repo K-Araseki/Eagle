@@ -11,15 +11,18 @@ import org.vaadin.example.data.認証された店舗;
 @Service
 public class 店舗認証Service {
     // プロパティに記述
-    @Value("${eagle.api.uri.authenticatePlace}")
+
+    @Value("${eagle.api.uri}")
     private String uri;
 
     public 認証された店舗 authenticatePlace(Long placeId, String placePassword){
 
+        // TODO アノテーションが機能していない
+        System.out.println("URL"+uri);
         // apiが出来たら使う
         RestTemplate restTemplate = new RestTemplate();
         RequestBody requestBody = new RequestBody(placeId, placePassword);
-        var 認証された店舗 = restTemplate.postForObject(uri,requestBody, 認証された店舗.class);
+        var 認証された店舗 = restTemplate.postForObject( "http://localhost:8081/eagle-api/authenticatePlace",requestBody, 認証された店舗.class);
         if (認証された店舗 == null){
             return new 認証された店舗(new PlaceId(-1L),new PlaceName("-1"));
         }
