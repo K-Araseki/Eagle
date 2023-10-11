@@ -1,11 +1,9 @@
 package org.vaadin.example.view;
 
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
@@ -15,10 +13,10 @@ import org.vaadin.example.service.店舗認証Service;
 @Route("login")
 @PageTitle("トータルサポート勤怠管理システム ログイン")
 @AnonymousAllowed
-public class SignInView extends VerticalLayout{
+public class LoginView extends VerticalLayout{
 
     private LoginForm loginForm = new LoginForm();
-    public SignInView(){
+    public LoginView(){
 
         LoginI18n i18n = LoginI18n.createDefault();
 
@@ -46,11 +44,12 @@ public class SignInView extends VerticalLayout{
         add(new H1("トータルサポート　勤怠管理システム"), loginForm);
 
         loginForm.addLoginListener(loginEvent -> {
-            int placeId = Integer.parseInt(loginEvent.getUsername());
+            Long placeId = Long.parseLong(loginEvent.getUsername());
             String placePassword = loginEvent.getPassword();
 
             店舗認証Service 店舗認証service = new 店舗認証Service();
-            var result = 店舗認証service.authenticate_test(placeId, placePassword);
+            //var result = 店舗認証service.authenticate_test(placeId, placePassword);
+            var result = 店舗認証service.authenticatePlace(placeId, placePassword);
             System.out.println(result.placeName());
         });
 

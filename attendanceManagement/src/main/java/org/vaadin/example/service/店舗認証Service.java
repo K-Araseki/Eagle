@@ -14,7 +14,7 @@ public class 店舗認証Service {
     @Value("${eagle.api.uri.authenticatePlace}")
     private String uri;
 
-    public 認証された店舗 authenticate(Long placeId, String placePassword){
+    public 認証された店舗 authenticatePlace(Long placeId, String placePassword){
 
         // apiが出来たら使う
         RestTemplate restTemplate = new RestTemplate();
