@@ -39,4 +39,12 @@ public class 店舗認証Service {
     ){
     }
 
+    public 認証された店舗 authenticate_test(int placeId, String placePassword){
+
+        if (placeId == 111 && placePassword == "1pass") {
+            return new 認証された店舗(new PlaceId(1L), new PlaceName("千歳店"));
+        }else {
+            return new 認証された店舗(new PlaceId(-1L),new PlaceName("-1"));
+        }
+    }
 }
