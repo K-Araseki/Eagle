@@ -10,7 +10,7 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 import org.vaadin.example.service.店舗認証Service;
 
 //このクラスは後でloginに名前変更する
-@Route("login")
+@Route("")
 @PageTitle("トータルサポート勤怠管理システム ログイン")
 @AnonymousAllowed
 public class LoginView extends VerticalLayout{
