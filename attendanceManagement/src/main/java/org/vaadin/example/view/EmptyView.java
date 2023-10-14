@@ -14,10 +14,9 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 import com.vaadin.flow.theme.lumo.LumoUtility.Padding;
-import org.vaadin.example.view.TopView;
 
 @PageTitle("Empty")
-@Route(value = "empty", layout = TopView.class)
+@Route(value = "empty", layout = MainView.class)
 public class EmptyView extends Composite<VerticalLayout> {
 
     public EmptyView() {

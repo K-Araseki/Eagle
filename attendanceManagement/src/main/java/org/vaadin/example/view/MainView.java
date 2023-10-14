@@ -1,64 +1,64 @@
 package org.vaadin.example.view;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.vaadin.flow.component.Key;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.applayout.AppLayout;
+import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.tabs.Tab;
+import com.vaadin.flow.component.tabs.Tabs;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import org.vaadin.example.service.GreetService;
+import com.vaadin.flow.router.RouterLink;
 
-/**
- * A sample Vaadin view class.
- * <p>
- * To implement a Vaadin view just extend any Vaadin component and use @Route
- * annotation to announce it in a URL as a Spring managed bean.
- * <p>
- * A new instance of this class is created for every new user and every browser
- * tab/window.
- * <p>
- * The main view contains a text field for getting the user name and a button
- * that shows a greeting message in a notification.
- */
-//@Route
-public class MainView extends VerticalLayout {
+@Route("main")
+@PageTitle("トータルサポート勤怠管理システム メインページ")
+public class MainView extends AppLayout{
 
-    /**
-     * Construct a new Vaadin view.
-     * <p>
-     * Build the initial UI state for the user accessing the application.
-     *
-     * @param service
-     *            The message service. Automatically injected Spring managed
-     *            bean.
-     */
-    public MainView(@Autowired GreetService service) {
+    public MainView() {
+        DrawerToggle toggle = new DrawerToggle();
 
-        // Use TextField for standard text input
-        TextField textField = new TextField("Your name");
-        textField.addClassName("bordered");
+        H1 pleaseName = new H1("千歳店"); //ログインページから持ってくる
+        pleaseName.getStyle().set("font-size", "var(--lumo-font-size-xl)")
+                .set("margin", "0");
 
-        // Button click listeners can be defined as lambda expressions
-        Button button = new Button("Say hello", e -> {
-            add(new Paragraph(service.greet(textField.getValue())));
-        });
+        Tabs tabs = getTabs();
 
-        // Theme variants give you predefined extra styles for components.
-        // Example: Primary button has a more prominent look.
-        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        addToDrawer(tabs);
+        addToNavbar(toggle, pleaseName);
 
-        // You can specify keyboard shortcuts for buttons.
-        // Example: Pressing enter in this view clicks the Button.
-        button.addClickShortcut(Key.ENTER);
+        setPrimarySection(Section.DRAWER);
 
-        // Use custom CSS classes to apply styling. This is defined in
-        // styles.css.
-        addClassName("centered-content");
 
-        add(textField, button);
+    }
+
+    private Tabs getTabs() {
+        Tabs tabs = new Tabs();
+        tabs.add(createTab(VaadinIcon.HOME, "ホーム", HelloView.class),
+                createTab(VaadinIcon.TIME_FORWARD, "出勤・退勤時間入力", EmptyView.class),
+                createTab(VaadinIcon.CLIPBOARD_USER, "従業員", HelloView.class),
+                createTab(VaadinIcon.COG, "管理者設定", HelloView.class));
+        tabs.setOrientation(Tabs.Orientation.VERTICAL);
+        return tabs;
+    }
+
+    private Tab createTab(VaadinIcon viewIcon, String viewName, Class<? extends Component> view) {
+        Icon icon = viewIcon.create();
+        icon.getStyle().set("box-sizing", "border-box")
+                .set("margin-inline-end", "var(--lumo-space-m)")
+                .set("margin-inline-start", "var(--lumo-space-xs)")
+                .set("padding", "var(--lumo-space-xs)");
+
+        RouterLink link = new RouterLink();
+        link.add(icon, new Span(viewName));
+        // Demo has no routes
+        link.setRoute(view);
+        link.setTabIndex(-1);
+
+        return new Tab(link);
     }
 
 }
+
