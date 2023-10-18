@@ -1,10 +1,13 @@
 package org.vaadin.example.view;
 
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.messages.MessageInput;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -38,21 +41,34 @@ public class HomeView extends Div {
 
         add(horizontalLayout);
 
-        List<Person> people = new ArrayList(Arrays.asList(
-                new Person("Alice", 25),
-                new Person("Bob", 30),
-                new Person("Charlie", 22)
-        ));
+        MessageInput input = new MessageInput();
 
-        Grid<Person> grid = new Grid<>(Person.class);
-        //grid.addColumn(Person::getName).setHeader("名前");
-        //grid.addColumn(Person::getEdg).setHeader("年齢");
-        grid.setItems(people);
+        input.addSubmitListener(submitEvent -> {
+            if(submitEvent.getValue().equals("abc")){
+                List<Person> people = new ArrayList(Arrays.asList(
+                        new Person("Alice", 25),
+                        new Person("Bob", 30),
+                        new Person("Charlie", 22)
+                ));
 
-        grid.setColumns("name", "age");
-        grid.getColumnByKey("name").setHeader("名前");
-        grid.getColumnByKey("age").setHeader("年齢");
-        add(grid);
+                Grid<Person> grid = new Grid<>(Person.class);
+                //grid.addColumn(Person::getName).setHeader("名前");
+                //grid.addColumn(Person::getEdg).setHeader("年齢");
+                grid.setItems(people);
+
+                grid.setColumns("name", "age");
+                grid.getColumnByKey("name").setHeader("名前");
+                grid.getColumnByKey("age").setHeader("年齢");
+                add(grid);
+            }
+        });
+        add(input);
+
+
+
+
+
+
     }
 
 }
