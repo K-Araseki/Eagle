@@ -36,7 +36,7 @@ public class MainView extends AppLayout{
 
     private Tabs getTabs() {
         Tabs tabs = new Tabs();
-        tabs.add(createTab(VaadinIcon.HOME, "ホーム", HelloView.class),
+        tabs.add(createTab(VaadinIcon.HOME, "ホーム", HomeView.class),
                 createTab(VaadinIcon.TIME_FORWARD, "出勤・退勤時間入力", EmptyView.class),
                 createTab(VaadinIcon.CLIPBOARD_USER, "従業員", HelloView.class),
                 createTab(VaadinIcon.COG, "管理者設定", HelloView.class));
