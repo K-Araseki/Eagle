@@ -47,7 +47,7 @@ public class 店舗情報から当日の出勤者リストを検索するImpl im
                         );
                         return 検索された出勤者;
                     }
-                    ,出勤者検索店舗情報.出勤日().value(),
+                    ,出勤者検索店舗情報.workingDay().value(),
                     出勤者検索店舗情報.placeId().value()
             ));
             return 検索された出勤者リスト;

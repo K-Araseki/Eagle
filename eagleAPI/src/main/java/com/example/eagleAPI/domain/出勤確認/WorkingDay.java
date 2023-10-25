@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 // 仮に日ごとの出勤とか見たくなったらレコードにする
 // とりあえずはクラス内の変数で扱う
-public record 出勤日(
+public record WorkingDay(
         LocalDate value
 ) {
 }
