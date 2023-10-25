@@ -35,7 +35,7 @@ public class ReadQRcodeView extends Div {
         button.addClickListener(e -> {
             if(textField.getValue().equals("A001")){
                 System.out.println("A001です");
-                button.getUI().ifPresent(ui -> ui.navigate());
+                button.getUI().ifPresent(ui -> ui.navigate(AttendanceRegistrationView.class));
             }
             else {
                 System.out.println("その他です");

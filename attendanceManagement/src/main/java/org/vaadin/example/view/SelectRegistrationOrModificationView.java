@@ -74,5 +74,9 @@ public class SelectRegistrationOrModificationView extends Div {
 
         add(text, horizontalLayout);
 
+        button1.addClickListener(buttonClickEvent -> {
+            button1.getUI().ifPresent(ui -> ui.navigate(ReadQRcodeView.class));
+        });
+
     }
 }
