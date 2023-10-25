@@ -12,11 +12,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service
-public class ShiftRegisterService {
+public class AttendanceRegisterService {
 
     private 出勤登録する 出勤登録する;
 
-    public ShiftRegisterService(出勤登録する 出勤登録する) {
+    public AttendanceRegisterService(出勤登録する 出勤登録する) {
         this.出勤登録する = 出勤登録する;
     }
 

@@ -1,6 +1,6 @@
 package com.example.eagleAPI.controller;
 
-import com.example.eagleAPI.service.ShiftRegisterService;
+import com.example.eagleAPI.service.AttendanceRegisterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,17 +11,17 @@ import java.time.LocalDateTime;
 
 @Slf4j
 @RestController
-public class ShiftRegisterController {
+public class AttendantsRegisterController {
 
-    private ShiftRegisterService shiftRegisterService;
+    private AttendanceRegisterService attendanceRegisterService;
 
-    public ShiftRegisterController(ShiftRegisterService shiftRegisterService) {
-        this.shiftRegisterService = shiftRegisterService;
+    public AttendantsRegisterController(AttendanceRegisterService attendanceRegisterService) {
+        this.attendanceRegisterService = attendanceRegisterService;
     }
 
-    @PostMapping(path = "/registerShift")
+    @PostMapping(path = "/registerAttendants")
     public void insert(@RequestBody Request json){
-        shiftRegisterService.insert(
+        attendanceRegisterService.insert(
                 json.accountId(),
                 json.workingDay,
                 json.startTime,
