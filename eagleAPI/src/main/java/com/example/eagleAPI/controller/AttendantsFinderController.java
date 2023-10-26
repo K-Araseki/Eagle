@@ -22,6 +22,7 @@ public class AttendantsFinderController {
     @PostMapping(path = "/bringAttendants")
     public 検索された出勤者リスト bringAttendants(@RequestBody Request json){
         log.debug("received" + json);
+        System.out.println(json);
         検索された出勤者リスト 検索された出勤者リスト = attendantsFinderService.findBy(json.placeId(), json.date);
         return 検索された出勤者リスト;
     }

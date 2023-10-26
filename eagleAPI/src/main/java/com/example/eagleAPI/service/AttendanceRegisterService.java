@@ -32,6 +32,7 @@ public class AttendanceRegisterService {
                 new UpdateTime(updateTime),
                 new DeleteTime(deleteTime)
         );
+        System.out.println(出勤登録対象);
         出勤登録する.insert(出勤登録対象);
 
         return;

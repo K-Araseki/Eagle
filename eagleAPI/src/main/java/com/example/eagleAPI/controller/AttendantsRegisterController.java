@@ -21,6 +21,8 @@ public class AttendantsRegisterController {
 
     @PostMapping(path = "/registerAttendants")
     public void insert(@RequestBody Request json){
+        log.debug("received"+ json);
+        System.out.println(json);
         attendanceRegisterService.insert(
                 json.accountId(),
                 json.workingDay,
