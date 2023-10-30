@@ -2,21 +2,24 @@ package org.vaadin.example.view;
 
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.router.BeforeEvent;
-import com.vaadin.flow.router.HasUrlParameter;
-import com.vaadin.flow.router.OptionalParameter;
-import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.*;
+import com.vaadin.flow.server.VaadinSession;
 
 @Route("AttendanceRegistration")
-public class AttendanceRegistrationView extends Div implements HasUrlParameter<String> {
+public class AttendanceRegistrationView extends Div implements BeforeEnterObserver {
 //HasUrlParameter<T>はLong、Integer、String、およびBoolean型の型引数のみをサポート
 
     private String text;
 
     @Override
-    public void setParameter(BeforeEvent event, @OptionalParameter String parameter){
-        setText(String.format("Hello, %s!", parameter));
-        this.text = parameter;
+    public void  beforeEnter(BeforeEnterEvent event){
+        String data = (String) VaadinSession.getCurrent().getAttribute("inputData");
+        if (data != null) {
+            setText("入力データ: " + data);
+            this.text = data;
+        } else {
+            setText("データがありません");
+        }
     }
 
     public AttendanceRegistrationView() {

@@ -12,6 +12,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.internal.BrowserLiveReload;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.server.VaadinSession;
 
 @Route("readQR")
 //@JsModule("https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js")
@@ -35,7 +36,8 @@ public class ReadQRcodeView extends Div {
         button.addClickListener(e -> {
             if(textField.getValue().equals("A001")){
                 System.out.println("A001です");
-                button.getUI().ifPresent(ui -> ui.navigate(AttendanceRegistrationView.class, "ABC"));
+                VaadinSession.getCurrent().setAttribute("inputData", "abc");
+                getUI().ifPresent(ui -> ui.navigate(AttendanceRegistrationView.class));
             }
             else {
                 System.out.println("その他です");
