@@ -36,8 +36,10 @@ public class ReadQRcodeView extends Div {
         button.addClickListener(e -> {
             if(textField.getValue().equals("A001")){
                 System.out.println("A001です");
-                VaadinSession.getCurrent().setAttribute("inputData", "abc");
-                getUI().ifPresent(ui -> ui.navigate(AttendanceRegistrationView.class));
+                VaadinSession.getCurrent().setAttribute("inputData", "前のページデータです");
+                getUI().ifPresent(ui -> ui.navigate("AttendanceRegistration"));
+                //getUI().ifPresent(ui -> ui.navigate(AttendanceRegistrationView.class));
+
             }
             else {
                 System.out.println("その他です");
