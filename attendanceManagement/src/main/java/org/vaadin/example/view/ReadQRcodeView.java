@@ -47,5 +47,7 @@ public class ReadQRcodeView extends Div {
         });
 
 
+
+
     }
 }

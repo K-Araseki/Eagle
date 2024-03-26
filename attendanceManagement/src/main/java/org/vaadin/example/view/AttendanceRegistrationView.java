@@ -125,11 +125,11 @@ public class AttendanceRegistrationView extends Composite<VerticalLayout> {
         layoutRow6.getStyle().set("flex-grow", "1");
         layoutRow6.setAlignItems(Alignment.CENTER);
         layoutRow6.setJustifyContentMode(JustifyContentMode.CENTER);
-        buttonPrimary.setText("Button");
+        buttonPrimary.setText("戻る");
         layoutRow6.setAlignSelf(FlexComponent.Alignment.CENTER, buttonPrimary);
         buttonPrimary.setWidth("min-content");
         buttonPrimary.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        buttonPrimary2.setText("Button");
+        buttonPrimary2.setText("登録");
         layoutRow6.setAlignSelf(FlexComponent.Alignment.CENTER, buttonPrimary2);
         buttonPrimary2.setWidth("min-content");
         buttonPrimary2.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -147,6 +147,10 @@ public class AttendanceRegistrationView extends Composite<VerticalLayout> {
         getContent().add(layoutRow6);
         layoutRow6.add(buttonPrimary);
         layoutRow6.add(buttonPrimary2);
+
+        buttonPrimary2.addClickListener(buttonClickEvent -> {
+            buttonPrimary2.getUI().ifPresent(ui -> ui.navigate(AttendanceRegistrationCompletedView.class));
+        });
     }
 
     record SampleItem(String value, String label, Boolean disabled) {
