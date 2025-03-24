@@ -16,6 +16,8 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 import com.vaadin.flow.theme.lumo.LumoUtility.Padding;
 
+import java.time.LocalDateTime;
+
 @Route(value = "SelectRegistrationOrModification", layout = MainView.class)
 public class SelectRegistrationOrModificationView extends Composite<VerticalLayout> {
 
@@ -110,6 +112,9 @@ public class SelectRegistrationOrModificationView extends Composite<VerticalLayo
         getContent().add(layoutRow);
         layoutRow.add(buttonPrimary);
         layoutRow.add(buttonPrimary2);
+
+        LocalDateTime nowDate = LocalDateTime.now();
+        System.out.println(nowDate);
 
         buttonPrimary.addClickListener(buttonClickEvent -> {
             buttonPrimary.getUI().ifPresent(ui -> ui.navigate(ReadQRcodeView.class));
